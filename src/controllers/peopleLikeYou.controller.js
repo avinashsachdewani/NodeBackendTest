@@ -4,7 +4,8 @@ const httpStatus = require('http-status')
 
 exports.peopleLikeYou = async (req, res, next) => {
   try {
-    const data = await PeopleLikeYou.find(req.query).sort('-score').exec()
+    const query = await PeopleLikeYou.generateQuery(req.query)
+    const data = await PeopleLikeYou.find(query).sort('-score').select({ _id: 0, createdAt: 0, updatedAt: 0, __v: 0 }).exec()
     res.status(httpStatus.OK)
     res.send(data)
   } catch (error) {

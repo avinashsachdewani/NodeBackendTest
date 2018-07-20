@@ -44,5 +44,18 @@ peopleSchema.method({
     return transformed
   }
 })
+peopleSchema.statics = {
+  async generateQuery (params) {
+    var query = {}
+    for (const key in params) {
+      if (key === 'name') {
+        query[key] = { $regex: new RegExp(params[key], 'i') }
+        continue
+      }
+      query[key] = params[key]
+    }
+    return query
+  }
+}
 
 module.exports = mongoose.model('peopleLikeYou', peopleSchema)

@@ -1,7 +1,6 @@
 'use strict'
 const mongoose = require('mongoose')
-// const httpStatus = require('http-status')
-// const APIError = require('../utils/APIError')
+
 const Schema = mongoose.Schema
 
 const peopleSchema = new Schema({

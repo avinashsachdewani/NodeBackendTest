@@ -10,9 +10,13 @@ const errorHandler = require('../middlewares/error-handler')
 const apiRouter = require('../routes/api')
 const passport = require('passport')
 const passportJwt = require('../services/passport')
+const multer = require('multer')
+const upload = multer()
 
 const app = express()
+app.use(bodyParser.urlencoded())
 app.use(bodyParser.json())
+app.use(upload.array())
 app.use(cors())
 app.use(helmet())
 

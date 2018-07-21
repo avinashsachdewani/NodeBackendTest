@@ -21,7 +21,7 @@ if (config.env !== 'test') app.use(morgan('combined'))
 // passport
 app.use(passport.initialize())
 passport.use('jwt', passportJwt.jwt)
-
+app.get('/', (req, res) => { res.send({ status: 'API Server is working fine' }) })
 app.use('/api', apiRouter)
 app.use(errorHandler.handleNotFound)
 app.use(errorHandler.handleError)

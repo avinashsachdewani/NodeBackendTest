@@ -14,6 +14,18 @@ exports.peopleLikeYou = async (req, res, next) => {
 }
 exports.insertPeople = async (req, res, next) => {
   try {
+    const people = new PeopleLikeYou(req.body)
+    people.score = people.score === undefined ? (Math.random() * (1 - 0.1) + 0.1).toFixed(1) : people.score
+    const savedPeople = await people.save()
+    res.status(httpStatus.CREATED)
+    res.send(`${savedPeople.name} inserted`)
+  } catch (error) {
+    next(error)
+  }
+}
+
+exports.insertPeoples = async (req, res, next) => {
+  try {
     var data = req.body
     for (const objPeople of data) {
       const people = new PeopleLikeYou(objPeople)

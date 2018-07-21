@@ -12,7 +12,7 @@ module.exports = {
       longitude: Joi.number().required(),
       monthlyIncome: Joi.number().required(),
       experienced: Joi.boolean().required(),
-      score: Joi.number().required()
+      score: Joi.number()
     }]
   },
   search: {

@@ -28,7 +28,8 @@ const peopleSchema = new Schema({
   }
 
 }, {
-  timestamps: true
+  timestamps: true,
+  strict: false
 })
 
 peopleSchema.method({

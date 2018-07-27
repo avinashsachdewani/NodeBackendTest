@@ -10,13 +10,10 @@ const errorHandler = require('../middlewares/error-handler')
 const apiRouter = require('../routes/api')
 const passport = require('passport')
 const passportJwt = require('../services/passport')
-const multer = require('multer')
-const upload = multer()
-
 const app = express()
 app.use(bodyParser.urlencoded())
 app.use(bodyParser.json())
-app.use(upload.array())
+
 app.use(cors())
 app.use(helmet())
 
@@ -26,6 +23,7 @@ if (config.env !== 'test') app.use(morgan('combined'))
 app.use(passport.initialize())
 passport.use('jwt', passportJwt.jwt)
 app.get('/', (req, res) => { res.send({ status: 'API Server is working fine' }) })
+
 app.use('/api', apiRouter)
 app.use(errorHandler.handleNotFound)
 app.use(errorHandler.handleError)
